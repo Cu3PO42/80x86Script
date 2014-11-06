@@ -1,0 +1,17 @@
+DEF
+INT x 2
+INT n 10
+INT y 0
+ASM
+MOV R1, 1
+MOV R3, [n]
+CMP R3, 0
+JE .END
+MOV R2, [x]
+.LOOP:
+MUL R1, R2
+SUB R3, 1
+JG .LOOP
+.END:
+MOV [y], R1
+HLT

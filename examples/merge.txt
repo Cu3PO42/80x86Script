@@ -1,0 +1,35 @@
+DEF
+LIST l1 [3, 5, 6, 7, 9]
+LIST l2 [2, 4, 5, 10, 11]
+LIST res 10
+ASM
+MOV R1, 4
+MOV R2, 4
+MOV R3, 9
+.LOOP:
+CMP [l1, R1], [l2, R2]
+JG .1BIGGER
+MOV [res, R3], [l2, R2]
+SUB R2, 1
+JL .COPY1
+JMP .TEST
+.1BIGGER:
+MOV [res, R3], [l1, R1]
+SUB R1, 1
+JL .COPY2
+.TEST:
+SUB R3, 1
+JGE .LOOP
+HLT
+.COPY1:
+SUB R3, 1
+MOV [res, R3], [l1, R1]
+SUB R1, 1
+JGE .COPY1
+HLT
+.COPY2:
+SUB R3, 1
+MOV [res, R3], [l2, R2]
+SUB R2, 1
+JGE .COPY2
+HLT
