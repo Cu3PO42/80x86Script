@@ -1,0 +1,51 @@
+doctype html
+html
+	head
+		link(type="text/css", rel="stylesheet", href="css/interpreter.css")
+	body
+		.column
+			h3 Instructions
+			table.instructions
+				tr.instruction(data-ng-repeat="instruction in env.instructions", data-ng-class!="{active: env.nxt == $index || env.error.addr == $index}")
+					td.label {{env.labelList[$index]}}
+					th.brk(data-ng-class!="{always: instruction.org && !instruction.brkOnlyOnce, once: instruction.org && instruction.brkOnlyOnce}", data-ng-click!="callFromRoot(toggleBreakpoint, [$index])") &#x25CF;
+					th.opcode {{instruction.name}}
+					td.attr {{instruction.opstring}}
+					th.pointer(data-ng-click="callFromRoot(updateNext, [$index])") &#x25C0
+
+		.column.center
+			div
+				h3 Run
+				.runners
+					div
+						input(type="button", value="Tick", data-ng-click="tick(env.noTicks)")
+						.others
+							input(type="number", min="1", data-ng-model="env.noTicks")
+					div
+						input(type="button", value="Run", data-ng-click="run()")
+						.others
+					div
+						input(type="button", value="Clock", data-ng-click="clock(env.freq)")
+						.others
+							input(type="number", min="0.1", data-ng-model="env.freq")
+							input(type="button", value="Cancel clock", data-ng-click="cancelClock()")
+
+				h3 Notification
+				p(data-ng-hide="env.error") ...
+				p(data-ng-show!="env.error && env.error.name == 'HLTError'") Your program has executed successfully.
+				div.error(data-ng-show!="env.error && env.error.name != 'HLTError'")
+					p {{env.error.name}}
+					p {{env.error.notification}}
+
+		.column
+			h3 Memory
+			table.memory
+				tr.register(data-ng-repeat="mem_loc in env.memArray")
+					td.index {{mem_loc.name}}
+					th.value(data-ng-class="{changed: mem_loc.changed}"): input(type="number", min="0", data-ng-model="mem_loc.val")
+
+			h3 Flags
+			table.flags
+				tr.flag(data-ng-repeat="flag in ['carry', 'zero', 'sign', 'overflow']")
+					th.index {{flag}}
+					td.value(data-ng-class="{changed: flagState[flag]}", data-ng-click!="callFromRoot(toggleFlag, [flag])") {{env.flags[flag]}}

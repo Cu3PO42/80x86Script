@@ -1,0 +1,121 @@
+.column
+  display table-cell
+  &.center
+    width 100%
+    & > div
+      display table
+      margin 0 auto
+
+h3:not(:first-child)
+  padding-top 15px
+
+.instruction
+  .pointer
+    color rgba(0, 0, 0, 0)
+    &:hover
+      color redbrown
+  &.active
+    .pointer
+      color beige
+  .brk
+    color rgba(0, 0, 0, 0)
+    &.always
+      color redbrown
+    &.once
+      color beige
+  .attr
+    padding-left 3px
+    white-space nowrap
+    text-align left
+  .opcode
+    text-align left
+
+.instructions
+  text-align right
+  font-family "Lucida Console", monospace
+
+.memory
+  border-spacing 2px
+
+.memory, .flags
+  tbody
+    & > :first-child
+      & > :first-child
+        border-radius 5px 0 0 0
+      & > :last-child
+        border-radius 0 5px 0 0
+    & > :last-child
+      & > :first-child
+        border-radius 0 0 0 5px
+      & > :last-child
+        border-radius 0 0 5px 0
+    & > :first-child:last-child
+      & > :first-child
+        border-radius 5px 0 0 5px
+      & > :last-child
+        border-radius 0 5px 5px 0
+
+.register
+  .value
+    input
+      border none
+      padding 5px
+      background-color rgba(0, 0, 0, 0)
+      color beige
+    &.changed
+      input
+        background-color beige
+        color redbrown
+
+.register, .flag
+  .index
+    padding 0 5px
+  & > *
+    border 5px solid beige
+
+.flags
+  width 100%
+  .flag
+    & > *
+      padding 5px
+    .index
+      text-align left
+    .value
+      text-align center
+      width 100%
+      &.changed
+        background-color beige
+        color redbrown
+
+.runners
+  display table
+  & > div
+    display table-row
+    & > *
+      display table-cell
+  border-spacing 2px
+  .others
+    font-size 0
+    & > :last-child:not(:first-child)
+      margin-left 2px
+  input[type="button"]
+    min-width 100px
+    padding 5px
+    background-color beige
+    color brown
+    border 0
+    border-radius 5px
+    &:hover
+      color redbrown
+  input[type="number"]
+    background-color beige
+    color brown
+    border 5px solid beige
+    border-radius 5px
+    &:focus
+      outline none
+
+.error
+  background-color redbrown
+  padding 5px
+  border-radius 5px

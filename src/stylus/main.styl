@@ -1,0 +1,43 @@
+footerheight = 20px
+
+*
+  margin 0
+  padding 0
+
+html, body
+  height 100%
+  font-family Helvatica, Calibri, sans-serif
+
+#mainWrapper
+  min-height 100%
+
+#contentWrapper
+  padding-bottom footerheight
+
+#footer
+  height footerheight
+  margin-top -(footerheight)
+  text-align center
+  color brown
+
+#mainWrapper
+  background beige url(../resources/noise.png)
+
+#contentWrapper
+  padding-left 20px
+  padding-right @padding-left
+
+  & > h1
+    font-size 80px
+    padding-top 10px
+    padding-bottom 15px
+    text-align center
+    color brown
+    font-family Cambria, serif
+
+.view
+  background brown url(../resources/noise.png)
+  border-radius 10px
+  padding 20px
+  box-shadow 0 0 10px darken(brown, 50%) inset
+  color beige
