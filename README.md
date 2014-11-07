@@ -16,5 +16,9 @@
 
 Examples can be found in the `examples` directory. Documentation on code is currently lacking, please use common sense.
 
+## Hosted version
+
+A hosted version of this software may be found [here](http://cu3po42.github.io/80x86Script/).
+
 ## License
 See `LICENSE.md`.
